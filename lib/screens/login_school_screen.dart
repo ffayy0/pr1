@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mutabie1/screens/School_screen.dart';
+//import 'package:mutabie1/screens/RegisterScreen.dart';
+import 'package:mutabie1/screens/register_screen.dart';  // استيراد شاشة التسجيل
 
 class LoginSchoolScreen extends StatefulWidget {
   const LoginSchoolScreen({Key? key}) : super(key: key);
@@ -14,10 +17,10 @@ class _LoginSchoolScreenState extends State<LoginSchoolScreen> {
 
   // قاعدة بيانات وهمية للمستخدمين (ID أو البريد + كلمة المرور)
   final Map<String, String> users = {
-   "admin": "admin123",
-   "user1": "password1",
- "testUser": "test123"
-};
+    "admin": "aadmin123",
+    "user1": "password1",
+    "testUser": "test123"
+  };
 
   // دالة تسجيل الدخول
   void _login() {
@@ -30,9 +33,13 @@ class _LoginSchoolScreenState extends State<LoginSchoolScreen> {
         _errorMessage = "تم تسجيل الدخول بنجاح!";
       });
 
-      // يمكن توجيه المستخدم إلى الصفحة الرئيسية هنا
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-
+     // توجيه المستخدم إلى شاشة SchoolScreen مع تمرير البريد الإلكتروني
+      Navigator.pushReplacement(
+       context,
+       MaterialPageRoute(
+          builder: (context) => SchoolScreen(schoolName: email),
+       ),
+      );
     } else {
       // تسجيل دخول فاشل
       setState(() {
@@ -90,11 +97,13 @@ class _LoginSchoolScreenState extends State<LoginSchoolScreen> {
             ),
             const SizedBox(height: 20),
 
-            // عرض رسالة الخطأ
+            // عرض رسالة الخطأ أو النجاح
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,
-                style: TextStyle(color: _errorMessage == "تم تسجيل الدخول بنجاح!" ? Colors.green : Colors.red),
+                style: TextStyle(
+                  color: _errorMessage == "تم تسجيل الدخول بنجاح!" ? Colors.green : Colors.red,
+                ),
               ),
 
             const SizedBox(height: 10),
@@ -126,7 +135,13 @@ class _LoginSchoolScreenState extends State<LoginSchoolScreen> {
             // زر تسجيل حساب جديد
             ElevatedButton(
               onPressed: () {
-                // يمكن توجيه المستخدم إلى صفحة التسجيل هنا
+                // توجيه المستخدم إلى صفحة التسجيل
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterScreen(),  // الانتقال إلى شاشة التسجيل
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[300],

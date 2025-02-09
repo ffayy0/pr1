@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_School.dart';
+import 'package:mutabie1/screens/login_school_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
